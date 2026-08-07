@@ -20,32 +20,13 @@ public class EquipmentApiService
 
     public Task BorrowAsync(int id, string firstName, string lastName)
     {
-        var equipment = _mockEquipments.FirstOrDefault(e => e.Id == id);
-        if (equipment is null || !equipment.IsAvailable)
-        {
-            throw new HttpRequestException("Equipment not found or already borrowed.");
-        }
-
-        equipment.IsAvailable = false;
-        equipment.BorrowerFirstName = firstName;
-        equipment.BorrowerLastName = lastName;
-        equipment.BorrowDate = DateTime.UtcNow;
+        // TODO: Replace with HttpClient calls to the API and send FirstName/LastName during PUT.
         return Task.CompletedTask;
     }
 
     public Task ReturnAsync(int id)
     {
-        var equipment = _mockEquipments.FirstOrDefault(e => e.Id == id);
-        if (equipment is null || equipment.IsAvailable)
-        {
-            throw new HttpRequestException("Equipment not found or not currently borrowed.");
-        }
-
-        equipment.IsAvailable = true;
-        equipment.LastReturnDate = DateTime.UtcNow;
-        equipment.BorrowerFirstName = null;
-        equipment.BorrowerLastName = null;
-        equipment.BorrowDate = null;
+        // TODO: Replace with HttpClient calls to the API and send FirstName/LastName during PUT.
         return Task.CompletedTask;
     }
 }
